@@ -1,0 +1,10 @@
+PROJECT(refmem)
+
+ENABLE_LANGUAGE(C)
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+SET(SOURCES alloc.c
+            debug_refmem.c)
+
+ADD_LIBRARY(refmem STATIC ${SOURCES})
