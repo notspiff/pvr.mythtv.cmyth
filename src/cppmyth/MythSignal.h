@@ -19,7 +19,7 @@
  *
  */
 
-#include "platform/util/StdString.h"
+#include "xbmc/util/StdString.h"
 
 class MythSignal
 {

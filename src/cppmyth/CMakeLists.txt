@@ -1,4 +1,4 @@
-PROJECT(mythcpp)
+PROJECT(cppmyth)
 
 ENABLE_LANGUAGE(CXX)
 
@@ -16,4 +16,4 @@ SET(SOURCES MythChannel.cpp
             MythStorageGroupFile.cpp
             MythTimestamp.cpp)
 
-ADD_LIBRARY(mythcpp STATIC ${SOURCES})
+ADD_LIBRARY(cppmyth STATIC ${SOURCES})

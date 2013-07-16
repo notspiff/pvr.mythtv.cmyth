@@ -22,7 +22,7 @@
 #include "client.h"
 #include "pvrclient-mythtv.h"
 
-#include <xbmc_pvr_dll.h>
+#include <xbmc/xbmc_pvr_dll.h>
 
 using namespace std;
 using namespace ADDON;

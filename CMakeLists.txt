@@ -8,8 +8,12 @@ addon_version(pvr.mythtv.cmyth PVRMYTH)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR})
 
 ENABLE_LANGUAGE(CXX)
+ENABLE_LANGUAGE(C)
 
 OPTION(PACKAGE_ZIP "Package Zip file?" OFF)
+
+FIND_PACKAGE(Boost REQUIRED)
+FIND_PACKAGE(MySqlClient REQUIRED)
 
 IF(WIN32)
   SET(BINDING_FILE ${XBMC_BINDINGS}.zip)
@@ -31,30 +35,38 @@ ELSE(WIN32)
   FIND_PACKAGE(xbmcplatform REQUIRED)
   INCLUDE_DIRECTORIES(${xbmcplatform_INCLUDE_DIRS}
                       ${XBMC_INCLUDE_DIR}
-                      ${PROJECT_SOURCE_DIR}/lib)
+                      ${Boost_INCLUDE_DIRS}
+                      ${LIBMYSQLCLIENT_INCLUDE_DIR}
+                      ${PROJECT_SOURCE_DIR}/lib/cmyth/include
+                      ${PROJECT_SOURCE_DIR}/lib/cmyth/libcmyth
+                      ${PROJECT_SOURCE_DIR}/lib/cmyth/librefmem)
   ADD_DEFINITIONS(-DTARGET_LINUX -DUSE_DEMUX)
+  SET(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -fPIC)
+  SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -fPIC)
 ENDIF(WIN32)
 
 SET(SOURCES src/categories.cpp
             src/client.cpp
             src/fileOps.cpp
-            src/pvrclient-mythtv.cpp
-            src/CircBuffer.cpp)
+            src/pvrclient-mythtv.cpp)
 
 ADD_SUBDIRECTORY(lib/cmyth/libcmyth)
-ADD_SUBDIRECTORY(src/cmyth/librefmem)
+ADD_SUBDIRECTORY(lib/cmyth/librefmem)
+ADD_SUBDIRECTORY(src/cppmyth)
 
 ADD_LIBRARY(pvr.mythtv.cmyth ${SOURCES})
-ADD_DEPENDENCIES(pvr.hts mythcpp cmyth refmem)
+ADD_DEPENDENCIES(pvr.mythtv.cmyth cppmyth cmyth refmem)
 
 IF(NOT WIN32)
-  TARGET_LINK_LIBRARIES(pvr.mythtv.cmyth ${xbmcplatform_LIBRARIES})
+  TARGET_LINK_LIBRARIES(pvr.mythtv.cmyth ${xbmcplatform_LIBRARIES}
+                                         ${LIBMYSQLCLIENT_LIBRARIES}
+                                         cmyth cppmyth refmem)
   set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "-s")
   set(CMAKE_MODULE_LINKER_FLAGS_RELEASE "-s")
 ENDIF(NOT WIN32)
-SET_TARGET_PROPERTIES(pvr.hts PROPERTIES VERSION ${PVRMYTH_VERSION}
-                                         SOVERSION 13.0
-                                         PREFIX "")
+SET_TARGET_PROPERTIES(pvr.mythtv.cmyth PROPERTIES VERSION ${PVRMYTH_VERSION}
+                                                  SOVERSION 13.0
+                                                  PREFIX "")
 
 IF(PACKAGE_ZIP)
   # Pack files together to create an archive

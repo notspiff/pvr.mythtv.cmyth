@@ -21,7 +21,7 @@
 
 #include "MythTimestamp.h"
 
-#include "platform/util/StdString.h"
+#include "xbmc/util/StdString.h"
 
 #include <boost/shared_ptr.hpp>
 

@@ -29,4 +29,6 @@ SET(SOURCES bookmark.c
             timestamp.c
             utf8tolatin1.c)
 
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+
 ADD_LIBRARY(cmyth STATIC ${SOURCES})

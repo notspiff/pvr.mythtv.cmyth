@@ -22,8 +22,8 @@
 #include "fileOps.h"
 #include "categories.h"
 
-#include <xbmc_pvr_types.h>
-#include <platform/threads/mutex.h>
+#include <xbmc/xbmc_pvr_types.h>
+#include <xbmc/threads/mutex.h>
 
 class RecordingRule : public MythRecordingRule, public std::vector<std::pair<PVR_TIMER, MythProgramInfo> >
 {

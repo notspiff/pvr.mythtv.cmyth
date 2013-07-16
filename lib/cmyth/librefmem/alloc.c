@@ -43,7 +43,7 @@
 #include <errno.h>
 #include <refmem/refmem.h>
 #include <refmem/atomic.h>
-#include <refmem_local.h>
+#include "refmem_local.h"
 
 #include <string.h>
 #include <stdio.h>

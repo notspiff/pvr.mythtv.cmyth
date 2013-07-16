@@ -19,7 +19,7 @@
  *
  */
 
-#include "platform/threads/threads.h"
+#include "xbmc/threads/threads.h"
 
 extern "C" {
 #include <cmyth/cmyth.h>
