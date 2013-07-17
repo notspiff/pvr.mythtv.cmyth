@@ -41,8 +41,9 @@ ELSE(WIN32)
                       ${PROJECT_SOURCE_DIR}/lib/cmyth/libcmyth
                       ${PROJECT_SOURCE_DIR}/lib/cmyth/librefmem)
   ADD_DEFINITIONS(-DTARGET_LINUX -DUSE_DEMUX)
-  SET(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -fPIC)
-  SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -fPIC)
+
+  include(AddOptions.cmake)
+  add_options(ALL_LANGUAGES RELEASE "-fPIC")
 ENDIF(WIN32)
 
 SET(SOURCES src/categories.cpp
