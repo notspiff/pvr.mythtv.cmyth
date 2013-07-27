@@ -13,4 +13,15 @@
 	dh $@ 
 
 override_dh_auto_configure:
+# USE_LTO breaks build
 	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=1
+
+override_dh_strip:
+	dh_strip --dbg-package=xbmc-pvr-mythtv-cmyth-dbg
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/xbmc-pvr-mythtv-cmyth
+
+override_dh_installdocs:
+	dh_installdocs --link-doc=xbmc-pvr-mythtv-cmyth
+
