@@ -1,44 +1,44 @@
-PROJECT(pvr.mythtv.cmyth)
+project(pvr.mythtv.cmyth)
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+cmake_minimum_required(VERSION 2.6)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR})
 
-ENABLE_LANGUAGE(CXX)
-ENABLE_LANGUAGE(C)
+enable_language(CXX)
+enable_language(C)
 
-FIND_PACKAGE(xbmc REQUIRED)
-FIND_PACKAGE(xbmcplatform REQUIRED)
-FIND_PACKAGE(Boost REQUIRED)
-FIND_PACKAGE(MySqlClient REQUIRED)
-addon_version(pvr.mythtv.cmyth PVRMYTH)
+find_package(xbmc REQUIRED)
+find_package(xbmcplatform REQUIRED)
+find_package(Boost REQUIRED)
+find_package(MySqlClient REQUIRED)
 
-INCLUDE_DIRECTORIES(${xbmcplatform_INCLUDE_DIRS}
+include_directories(${xbmcplatform_INCLUDE_DIRS}
                     ${XBMC_INCLUDE_DIR}
                     ${Boost_INCLUDE_DIRS}
-                    ${LIBMYSQLCLIENT_INCLUDE_DIR}
+                    ${MYSQLCLIENT_INCLUDE_DIRS}
                     ${PROJECT_SOURCE_DIR}/lib/cmyth/include
                     ${PROJECT_SOURCE_DIR}/lib/cmyth/libcmyth
                     ${PROJECT_SOURCE_DIR}/lib/cmyth/librefmem)
 
-ADD_DEFINITIONS(-DUSE_DEMUX)
+add_definitions(-DUSE_DEMUX)
 
-IF (NOT WIN32)
+if(NOT WIN32)
   add_options(ALL_LANGUAGES ALL_BUILDS "-fPIC")
-ENDIF(NOT WIN32)
+endif()
 
-SET(SOURCES src/categories.cpp
-            src/client.cpp
-            src/fileOps.cpp
-            src/pvrclient-mythtv.cpp)
+set(MYTHTV_SOURCES src/categories.cpp
+                   src/client.cpp
+                   src/fileOps.cpp
+                   src/pvrclient-mythtv.cpp)
 
-ADD_SUBDIRECTORY(lib/cmyth/libcmyth)
-ADD_SUBDIRECTORY(lib/cmyth/librefmem)
-ADD_SUBDIRECTORY(src/cppmyth)
+add_subdirectory(lib/cmyth/libcmyth)
+add_subdirectory(lib/cmyth/librefmem)
+add_subdirectory(src/cppmyth)
 
-SET(DEPLIBS ${xbmcplatform_LIBRARIES}
-            ${LIBMYSQLCLIENT_LIBRARIES}
+set(DEPLIBS ${xbmcplatform_LIBRARIES}
+            ${MYSQLCLIENT_LIBRARIES}
             cmyth cppmyth refmem)
 
-build_addon(pvr.mythtv.cmyth SOURCES DEPLIBS PVRMYTH_VERSION)
-install_addon(pvr.mythtv.cmyth ${PVRMYTH_VERSION})
+build_addon(pvr.mythtv.cmyth MYTHTV DEPLIBS)
+
+include(CPack)
