@@ -37,7 +37,7 @@ add_subdirectory(src/cppmyth)
 
 set(DEPLIBS ${xbmcplatform_LIBRARIES}
             ${MYSQLCLIENT_LIBRARIES}
-            cmyth cppmyth refmem)
+            -Wl,--whole-archive cmyth cppmyth refmem -Wl,--no-whole-archive)
 
 build_addon(pvr.mythtv.cmyth MYTHTV DEPLIBS)
 
