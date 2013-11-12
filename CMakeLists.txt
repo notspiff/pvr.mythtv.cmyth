@@ -20,7 +20,7 @@ include_directories(${xbmcplatform_INCLUDE_DIRS}
                     ${PROJECT_SOURCE_DIR}/lib/cmyth/libcmyth
                     ${PROJECT_SOURCE_DIR}/lib/cmyth/librefmem)
 
-add_definitions(-DUSE_DEMUX)
+add_definitions(-DUSE_DEMUX -D__STDC_FORMAT_MACROS)
 
 if(NOT WIN32)
   add_options(ALL_LANGUAGES ALL_BUILDS "-fPIC")

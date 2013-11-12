@@ -1,6 +1,6 @@
 #pragma once
 /*
- *      Copyright (C) 2005-2012 Team XBMC
+ *      Copyright (C) 2005-2013 Team XBMC
  *      http://www.xbmc.org
  *
  *  This Program is free software; you can redistribute it and/or modify
@@ -29,34 +29,29 @@ extern "C" {
 
 template <class T> class MythPointer;
 
-class MythTimestamp
+class MythEPGInfo
 {
 public:
-  friend class MythConnection;
-
-  MythTimestamp();
-  MythTimestamp(cmyth_timestamp_t cmyth_timestamp);
-  MythTimestamp(CStdString time);
-  MythTimestamp(time_t time, bool utc);
-
-  bool operator==(const MythTimestamp &other);
-  bool operator!=(const MythTimestamp &other) { return !(*this == other); }
-  bool operator>(const MythTimestamp &other);
-  bool operator>=(const MythTimestamp &other) { return (*this == other || *this > other); }
-  bool operator<(const MythTimestamp &other);
-  bool operator<=(const MythTimestamp &other) { return (*this == other || *this < other); }
+  MythEPGInfo();
+  MythEPGInfo(cmyth_epginfo_t cmyth_epginfo);
 
   bool IsNull() const;
 
-  time_t UnixTime();
-  CStdString String();
-  CStdString IsoString();
-  CStdString DisplayString(bool use12hClock);
-  CStdString NumString();
-
-  bool IsUTC();
-  MythTimestamp ToUTC();
+  unsigned int ChannelID();
+  CStdString ChannelName();
+  CStdString Callsign();
+  unsigned int SourceID();
+  CStdString Title();
+  CStdString Subtitle();
+  CStdString Description();
+  time_t StartTime();
+  time_t EndTime();
+  CStdString ProgramID();
+  CStdString SeriesID();
+  CStdString Category();
+  CStdString CategoryType();
+  unsigned int ChannelNumberInt();
 
 private:
-  boost::shared_ptr<MythPointer<cmyth_timestamp_t> > m_timestamp_t;
+  boost::shared_ptr<MythPointer<cmyth_epginfo_t> > m_epginfo_t;
 };

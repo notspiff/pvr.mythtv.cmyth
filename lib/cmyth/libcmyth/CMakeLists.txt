@@ -9,6 +9,7 @@ SET(SOURCES bookmark.c
             commbreak.c
             connection.c
             debug.c
+            epginfo.c
             event.c
             file.c
             freespace.c

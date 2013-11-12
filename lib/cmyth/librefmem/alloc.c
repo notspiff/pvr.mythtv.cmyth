@@ -43,7 +43,7 @@
 #include <errno.h>
 #include <refmem/refmem.h>
 #include <refmem/atomic.h>
-#include "refmem_local.h"
+#include <refmem_local.h>
 
 #include <string.h>
 #include <stdio.h>
@@ -533,7 +533,7 @@ ref_release(void *p)
 			total_bytecount -= ( sizeof(refcounter_t) + ref->length);
 			free(block);
 		}
-		if (refcount < 0)
+		else if (refcount < 0)
 			fprintf(stderr, "*** %s(): %p refcount %d ***\n",
 				__FUNCTION__, p, ref->refcount);
 	}
