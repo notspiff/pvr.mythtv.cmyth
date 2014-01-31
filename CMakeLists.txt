@@ -28,8 +28,20 @@ endif()
 
 set(MYTHTV_SOURCES src/categories.cpp
                    src/client.cpp
+                   src/demux.cpp
                    src/fileOps.cpp
-                   src/pvrclient-mythtv.cpp)
+                   src/pvrclient-mythtv.cpp
+                   src/demuxer/bitstream.cpp
+                   src/demuxer/debug.cpp
+                   src/demuxer/elementaryStream.cpp
+                   src/demuxer/ES_AAC.cpp
+                   src/demuxer/ES_AC3.cpp
+                   src/demuxer/ES_h264.cpp
+                   src/demuxer/ES_MPEGAudio.cpp
+                   src/demuxer/ES_MPEGVideo.cpp
+                   src/demuxer/ES_Subtitle.cpp
+                   src/demuxer/ES_Teletext.cpp
+                   src/demuxer/tsDemuxer.cpp)
 
 add_subdirectory(lib/cmyth/libcmyth)
 add_subdirectory(lib/cmyth/librefmem)
