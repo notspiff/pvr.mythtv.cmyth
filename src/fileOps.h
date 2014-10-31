@@ -22,8 +22,8 @@
 
 #include "cppmyth/MythStorageGroupFile.h"
 
-#include <xbmc/util/StdString.h>
-#include <xbmc/threads/threads.h>
+#include <kodi/util/StdString.h>
+#include <kodi/threads/threads.h>
 
 #include <vector>
 #include <map>

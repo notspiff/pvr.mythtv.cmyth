@@ -23,11 +23,11 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include <xbmc/util/StdString.h>
-#include <xbmc/libXBMC_addon.h>
-#include <xbmc/libXBMC_pvr.h>
-#include <xbmc/libXBMC_gui.h>
-#include <xbmc/libXBMC_codec.h>
+#include <kodi/util/StdString.h>
+#include <kodi/libXBMC_addon.h>
+#include <kodi/libXBMC_pvr.h>
+#include <kodi/libXBMC_gui.h>
+#include <kodi/libXBMC_codec.h>
 
 extern "C" {
 #include <cmyth/cmyth.h>

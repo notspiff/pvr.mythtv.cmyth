@@ -18,10 +18,10 @@
  *
  */
 
-#include "xbmc/os.h"
+#include "kodi/os.h"
 
-#include "xbmc/libXBMC_pvr.h"
-#include "xbmc/xbmc_codec_types.h"
+#include "kodi/libXBMC_pvr.h"
+#include "kodi/xbmc_codec_types.h"
 
 #include "demux.h"
 #include "client.h"

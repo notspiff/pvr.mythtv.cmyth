@@ -23,8 +23,8 @@
 #include "categories.h"
 #include "demux.h"
 
-#include <xbmc/xbmc_pvr_types.h>
-#include <xbmc/threads/mutex.h>
+#include <kodi/xbmc_pvr_types.h>
+#include <kodi/threads/mutex.h>
 
 class PVRClientMythTV : public MythEventObserver
 {

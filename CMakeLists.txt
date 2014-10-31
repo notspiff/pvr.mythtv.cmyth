@@ -7,13 +7,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR})
 enable_language(CXX)
 enable_language(C)
 
-find_package(xbmc REQUIRED)
-find_package(xbmcplatform REQUIRED)
+find_package(kodi REQUIRED)
+find_package(kodiplatform REQUIRED)
 find_package(Boost REQUIRED)
 find_package(MySqlClient REQUIRED)
 
-include_directories(${xbmcplatform_INCLUDE_DIRS}
-                    ${XBMC_INCLUDE_DIR}
+include_directories(${KODIPLATFORM_INCLUDE_DIRS}
+                    ${KODI_INCLUDE_DIR}
                     ${Boost_INCLUDE_DIRS}
                     ${MYSQLCLIENT_INCLUDE_DIRS}
                     ${PROJECT_SOURCE_DIR}/lib/cmyth/include
@@ -47,7 +47,7 @@ add_subdirectory(lib/cmyth/libcmyth)
 add_subdirectory(lib/cmyth/librefmem)
 add_subdirectory(src/cppmyth)
 
-set(DEPLIBS ${xbmcplatform_LIBRARIES}
+set(DEPLIBS ${KODIPLATFORM_LIBRARIES}
             ${MYSQLCLIENT_LIBRARIES}
             -Wl,--whole-archive cmyth cppmyth refmem -Wl,--no-whole-archive)
 

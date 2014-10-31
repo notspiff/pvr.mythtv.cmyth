@@ -21,7 +21,7 @@
 
 #include "MythConnection.h"
 
-#include "xbmc/util/StdString.h"
+#include "kodi/util/StdString.h"
 
 #include <boost/shared_ptr.hpp>
 

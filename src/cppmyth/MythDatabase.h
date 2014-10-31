@@ -19,7 +19,7 @@
  *
  */
 
-#include "xbmc/util/StdString.h"
+#include "kodi/util/StdString.h"
 
 #include <vector>
 #include <map>

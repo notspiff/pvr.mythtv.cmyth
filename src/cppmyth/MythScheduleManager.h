@@ -25,7 +25,7 @@
 #include "MythDatabase.h"
 #include "MythEPGInfo.h"
 
-#include <xbmc/threads/mutex.h>
+#include <kodi/threads/mutex.h>
 
 #include <vector>
 #include <list>
