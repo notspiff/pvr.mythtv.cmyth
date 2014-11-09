@@ -12,7 +12,7 @@ find_package(kodiplatform REQUIRED)
 find_package(Boost REQUIRED)
 find_package(MySqlClient REQUIRED)
 
-include_directories(${KODIPLATFORM_INCLUDE_DIRS}
+include_directories(${kodiplatform_INCLUDE_DIRS}
                     ${KODI_INCLUDE_DIR}
                     ${Boost_INCLUDE_DIRS}
                     ${MYSQLCLIENT_INCLUDE_DIRS}
@@ -47,10 +47,18 @@ add_subdirectory(lib/cmyth/libcmyth)
 add_subdirectory(lib/cmyth/librefmem)
 add_subdirectory(src/cppmyth)
 
-set(DEPLIBS ${KODIPLATFORM_LIBRARIES}
-            ${MYSQLCLIENT_LIBRARIES}
-            -Wl,--whole-archive cmyth cppmyth refmem -Wl,--no-whole-archive)
+set(DEPLIBS ${kodiplatform_LIBRARIES}
+            ${MYSQLCLIENT_LIBRARIES})
+if(WIN32)
+  list(APPEND DEPLIBS cmyth cppmyth refmem ws2_32)
+else()
+  list(APPEND DEPLIBS -Wl,--whole-archive cmyth cppmyth refmem -Wl,--no-whole-archive)
+endif()
 
 build_addon(pvr.mythtv.cmyth MYTHTV DEPLIBS)
+
+if(WIN32)
+  set_target_properties(pvr.mythtv.cmyth PROPERTIES LINK_FLAGS "/NODEFAULTLIB:libcmt")
+endif()
 
 include(CPack)
