@@ -50,11 +50,15 @@ add_subdirectory(src/cppmyth)
 set(DEPLIBS ${KODIPLATFORM_LIBRARIES}
             ${MYSQLCLIENT_LIBRARIES})
 if(WIN32)
-  list(APPEND DEPLIBS cmyth cppmyth refmem)
+  list(APPEND DEPLIBS cmyth cppmyth refmem ws2_32)
 else()
   list(APPEND DEPLIBS -Wl,--whole-archive cmyth cppmyth refmem -Wl,--no-whole-archive)
 endif()
 
 build_addon(pvr.mythtv.cmyth MYTHTV DEPLIBS)
+
+if(WIN32)
+  set_target_properties(pvr.mythtv.cmyth PROPERTIES LINK_FLAGS "/NODEFAULTLIB:libcmt")
+endif()
 
 include(CPack)
