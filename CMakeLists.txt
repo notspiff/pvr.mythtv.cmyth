@@ -48,8 +48,12 @@ add_subdirectory(lib/cmyth/librefmem)
 add_subdirectory(src/cppmyth)
 
 set(DEPLIBS ${KODIPLATFORM_LIBRARIES}
-            ${MYSQLCLIENT_LIBRARIES}
-            -Wl,--whole-archive cmyth cppmyth refmem -Wl,--no-whole-archive)
+            ${MYSQLCLIENT_LIBRARIES})
+if(WIN32)
+  list(APPEND DEPLIBS cmyth cppmyth refmem)
+else()
+  list(APPEND DEPLIBS -Wl,--whole-archive cmyth cppmyth refmem -Wl,--no-whole-archive)
+endif()
 
 build_addon(pvr.mythtv.cmyth MYTHTV DEPLIBS)
 
