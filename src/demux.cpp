@@ -307,7 +307,7 @@ bool Demux::SeekTime(int time, bool backwards, double* startpts)
   }
 
   if (g_bExtraDebug)
-    XBMC->Log(LOG_DEBUG, LOGTAG"%s: bw:%d tm:%d tm_pts:%"PRIu64" c_pts:%"PRIu64" offset:%+6.3f c_tm:%+6.3f n_tm:%+6.3f", __FUNCTION__,
+    XBMC->Log(LOG_DEBUG, LOGTAG"%s: bw:%d tm:%d tm_pts:%" PRIu64 " c_pts:%" PRIu64 " offset:%+6.3f c_tm:%+6.3f n_tm:%+6.3f", __FUNCTION__,
             backwards, time, pts, m_PTS, (double)offset / PTS_TIME_BASE, (double)m_curTime / PTS_TIME_BASE, (double)desired / PTS_TIME_BASE);
 
   if (it != m_posmap.end())
@@ -315,7 +315,7 @@ bool Demux::SeekTime(int time, bool backwards, double* startpts)
     int64_t new_time = it->first;
     uint64_t new_pos = it->second.av_pos;
     uint64_t new_pts = it->second.av_pts;
-    XBMC->Log(LOG_DEBUG, LOGTAG"seek to %"PRId64" pts=%"PRIu64, new_time, new_pts);
+    XBMC->Log(LOG_DEBUG, LOGTAG"seek to %" PRId64 " pts=%" PRIu64, new_time, new_pts);
 
     Flush();
     m_AVContext->GoPosition(new_pos);

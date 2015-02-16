@@ -950,7 +950,7 @@ PVR_ERROR PVRClientMythTV::GetRecordingEdl(const PVR_RECORDING &recording, PVR_E
         // mask == 2 ==> Found after the mark (use nsoffset, psoffset is zero)
         // mask == 3 ==> Found around the mark (use nsoffset [next offset / later] for start, psoffset [prev. offset / before] for end)
         int mask = m_db.GetRecordingSeekOffset(it->second, MARK_DURATION_MS, edlIt->start_mark, &psoffset, &nsoffset);
-        XBMC->Log(LOG_DEBUG, "%s - start_mark offset mask: %d, psoffset: %"PRId64", nsoffset: %"PRId64, __FUNCTION__, mask, psoffset, nsoffset);
+        XBMC->Log(LOG_DEBUG, "%s - start_mark offset mask: %d, psoffset: %" PRId64 ", nsoffset: %" PRId64, __FUNCTION__, mask, psoffset, nsoffset);
         if (mask > 0)
         {
           if (mask == 1)
@@ -961,7 +961,7 @@ PVR_ERROR PVRClientMythTV::GetRecordingEdl(const PVR_RECORDING &recording, PVR_E
             start = nsoffset;
 
           mask = m_db.GetRecordingSeekOffset(it->second, MARK_DURATION_MS, edlIt->end_mark, &psoffset, &nsoffset);
-          XBMC->Log(LOG_DEBUG, "%s - end_mark offset mask: %d, psoffset: %"PRId64", nsoffset: %"PRId64, __FUNCTION__, mask, psoffset, nsoffset);
+          XBMC->Log(LOG_DEBUG, "%s - end_mark offset mask: %d, psoffset: %" PRId64 ", nsoffset: %" PRId64, __FUNCTION__, mask, psoffset, nsoffset);
           if (mask == 2)
             end = nsoffset;
           else if (mask == 1 || mask == 3)
@@ -978,7 +978,7 @@ PVR_ERROR PVRClientMythTV::GetRecordingEdl(const PVR_RECORDING &recording, PVR_E
       if (start < end)
       {
         // We have both a valid start and end value now
-        XBMC->Log(LOG_DEBUG, "%s - start_mark: %"PRId64", end_mark: %"PRId64", start: %"PRId64", end: %"PRId64, __FUNCTION__, edlIt->start_mark, edlIt->end_mark, start, end);
+        XBMC->Log(LOG_DEBUG, "%s - start_mark: %" PRId64 ", end_mark: %" PRId64 ", start: %" PRId64", end: %" PRId64, __FUNCTION__, edlIt->start_mark, edlIt->end_mark, start, end);
         PVR_EDL_ENTRY entry;
         entry.start = start;
         entry.end = end;
@@ -987,7 +987,7 @@ PVR_ERROR PVRClientMythTV::GetRecordingEdl(const PVR_RECORDING &recording, PVR_E
         index++;
       }
       else
-        XBMC->Log(LOG_DEBUG, "%s - invalid offset: start_mark: %"PRId64", end_mark: %"PRId64", start: %"PRId64", end: %"PRId64, __FUNCTION__, edlIt->start_mark, edlIt->end_mark, start, end);
+        XBMC->Log(LOG_DEBUG, "%s - invalid offset: start_mark: %" PRId64 ", end_mark: %" PRId64 ", start: %" PRId64 ", end: %" PRId64, __FUNCTION__, edlIt->start_mark, edlIt->end_mark, start, end);
     }
     else
     {
